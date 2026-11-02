@@ -54,7 +54,23 @@ PlatformIO installs these on its own (`lib_deps` in `platformio.ini`):
 | TinyGSM | `vshymanskyy/TinyGSM @ ^0.12.0` | SIM800L AT commands, SMS |
 | StreamDebugger | `vshymanskyy/StreamDebugger @ ^1.0.1` | optional AT command dump |
 
-With the Arduino IDE instead: install **TinyGPSPlus** (Mikal Hart), **TinyGSM** (Volodymyr Shymanskyy) and **StreamDebugger** from the Library Manager, select board *ESP32 Dev Module*, and copy `src/main.cpp` into a `.ino` sketch.
+### Using the Arduino IDE instead of PlatformIO
+
+Ready-to-open sketches are in `arduino/` (same code as `src/`):
+
+| Sketch | Same as |
+|---|---|
+| `arduino/GPS_Tracker/GPS_Tracker.ino` | `src/main.cpp` |
+| `arduino/GPS_Test/GPS_Test.ino` | `src/tools/gps_test.cpp` |
+| `arduino/GSM_Test/GSM_Test.ino` | `src/tools/gsm_test.cpp` |
+
+1. **ESP32 board support:** *File → Preferences → Additional boards manager URLs*: add
+   `https://espressif.github.io/arduino-esp32/package_esp32_index.json`, then *Tools → Board → Boards Manager*, search **esp32** (by Espressif Systems), install.
+2. **Libraries:** *Tools → Manage Libraries*, install **TinyGPSPlus** (Mikal Hart), **TinyGSM** (Volodymyr Shymanskyy) and **StreamDebugger** (Volodymyr Shymanskyy).
+3. **Open** `arduino/GPS_Tracker/GPS_Tracker.ino` (the folder name must match the `.ino` name, as it does here).
+4. **Board:** *Tools → Board → esp32 → ESP32 Dev Module*. **Port:** *Tools → Port → COMx* (if no port appears, install the CP210x or CH340 USB driver for your DevKit).
+5. Click **Verify** (✓), then **Upload** (→). Open *Tools → Serial Monitor* at **115200** baud.
+6. For the test sketches with the GSM terminal, set the Serial Monitor line ending to **Carriage return**.
 
 ## Configuration
 
